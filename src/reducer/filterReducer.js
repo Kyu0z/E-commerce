@@ -7,18 +7,6 @@ const filterReducer = (state, action) => {
         priceArr
       );
 
-      // 1way
-      // console.log(Math.max.apply(null, priceArr));
-
-      // let maxPrice = priceArr.reduce(
-      //   (initialVal, curVal) => Math.max(initialVal, curVal),
-      //   0
-      // );
-      // console.log(
-      //   "🚀 ~ file: filterReducer.js ~ line 16 ~ filterReducer ~ maxPrice",
-      //   maxPrice
-      // );
-
       let maxPrice = Math.max(...priceArr);
       console.log(
         "🚀 ~ file: filterReducer.js ~ line 23 ~ filterReducer ~ maxPrice",
@@ -69,6 +57,8 @@ const filterReducer = (state, action) => {
         }
 
         if (sorting_value === "a-z") {
+          /* localeCompare là một phương thức của đối tượng chuỗi JavaScript (String) 
+           được sử dụng để so sánh hai chuỗi theo thứ tự từ điển trong một ngôn ngữ cụ thể được chỉ định. */
           return a.name.localeCompare(b.name);
         }
 
@@ -103,10 +93,21 @@ const filterReducer = (state, action) => {
 
       if (text) {
         tempFilterProduct = tempFilterProduct.filter((curElem) => {
+          /* toLowerCase: Khi gọi phương thức toLowerCase() trên một chuỗi, 
+          phương thức sẽ trả về một chuỗi mới với tất cả các ký tự trong chuỗi ban đầu được chuyển đổi thành ký tự thường. 
+          includes: kiểm tra xem một chuỗi có chứa một chuỗi con cụ thể hay không. Phương thức này trả về 
+          giá trị boolean (true hoặc false),
+          -> có thể được sử dụng trên mảng để kiểm tra xem một giá trị có tồn tại trong mảng hay không.
+          */
           return curElem.name.toLowerCase().includes(text);
         });
       }
 
+      /* 
+        kiểm tra xem giá trị của biến category có khác với chuỗi "all" không. Nếu biến category không bằng "all", 
+        nó sẽ thực hiện lọc các phần tử trong một mảng tempFilterProduct và chỉ giữ lại những phần tử có thuộc tính category 
+        bằng với giá trị của biến category.
+      */
       if (category !== "all") {
         tempFilterProduct = tempFilterProduct.filter(
           (curElem) => curElem.category === category
@@ -115,7 +116,8 @@ const filterReducer = (state, action) => {
 
       if (company !== "all") {
         tempFilterProduct = tempFilterProduct.filter(
-          (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
+          // (curElem) => curElem.company.toLowerCase() === company.toLowerCase()
+          (curElem) => curElem.company === company
         );
       }
 

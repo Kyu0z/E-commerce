@@ -48,11 +48,7 @@ const Footer = () => {
                   <FaInstagram className="icons" />
                 </div>
                 <div>
-                  <a
-                    href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href="#" target="_blank" rel="noreferrer">
                     <FaYoutube className="icons" />
                   </a>
                 </div>
@@ -60,7 +56,7 @@ const Footer = () => {
             </div>
             <div className="footer-contact">
               <h3>Call Us</h3>
-              <h3>+91 12345678978</h3>
+              <h3>0948757151</h3>
             </div>
           </div>
 

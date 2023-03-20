@@ -20,6 +20,7 @@ const FilterSection = () => {
 
     if (attr === "colors") {
       // return (newVal = ["All", ...new Set([].concat(...newVal))]);
+      // flat() -> làm phẳng array
       newVal = newVal.flat();
     }
 
@@ -60,7 +61,8 @@ const FilterSection = () => {
                 name="category"
                 value={curElem}
                 className={curElem === category ? "active" : ""}
-                onClick={updateFilterValue}>
+                onClick={updateFilterValue}
+              >
                 {curElem}
               </button>
             );
@@ -76,7 +78,8 @@ const FilterSection = () => {
             name="company"
             id="company"
             className="filter-company--select"
-            onClick={updateFilterValue}>
+            onClick={updateFilterValue}
+          >
             {companyData.map((curElem, index) => {
               return (
                 <option key={index} value={curElem} name="company">
@@ -101,7 +104,8 @@ const FilterSection = () => {
                   value={curColor}
                   name="color"
                   className="color-all--style"
-                  onClick={updateFilterValue}>
+                  onClick={updateFilterValue}
+                >
                   all
                 </button>
               );
@@ -114,7 +118,8 @@ const FilterSection = () => {
                 name="color"
                 style={{ backgroundColor: curColor }}
                 className={color === curColor ? "btnStyle active" : "btnStyle"}
-                onClick={updateFilterValue}>
+                onClick={updateFilterValue}
+              >
                 {color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>
             );
