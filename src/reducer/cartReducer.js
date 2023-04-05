@@ -3,6 +3,14 @@ const cartReducer = (state, action) => {
     let { id, color, amount, product } = action.payload;
 
     // tackle the existing product
+    /* 
+        Cụ thể, nếu sản phẩm đã tồn tại trong giỏ hàng, đoạn code sẽ tạo một mảng mới chứa thông tin về tất cả các sản phẩm 
+        trong giỏ hàng, trong đó sản phẩm có id và màu sắc tương tự với sản phẩm được thêm vào giỏ hàng sẽ được cập nhật 
+        số lượng. Nếu số lượng mới lớn hơn giới hạn tối đa của sản phẩm, thì số lượng sản phẩm sẽ được giới hạn là giới 
+        hạn tối đa. Đối với những sản phẩm không giống với sản phẩm được thêm vào giỏ hàng, chúng sẽ được giữ nguyên.
+        Sau khi cập nhật mảng sản phẩm, đoạn code sẽ trả về một đối tượng mới có chứa thông tin về trạng thái mới của giỏ hàng, 
+          trong đó danh sách các sản phẩm được cập nhật.    
+    */
 
     let existingProduct = state.cart.find(
       (curItem) => curItem.id === id + color
@@ -28,6 +36,17 @@ const cartReducer = (state, action) => {
         ...state,
         cart: updatedProduct,
       };
+      /* 
+        Trong đoạn code này, khi sản phẩm chưa có trong giỏ hàng (điều kiện if không thỏa mãn), chương trình tạo ra một 
+        đối tượng cartProduct để mô tả thông tin sản phẩm đó trong giỏ hàng. Đối tượng cartProduct bao gồm các thông tin 
+        như id (được tạo từ id và color của sản phẩm), name (tên sản phẩm), color (màu của sản phẩm), amount (số lượng sản phẩm)
+        , image (hình ảnh sản phẩm), price (giá của sản phẩm), và max (số lượng tối đa có thể mua của sản phẩm).
+
+        Sau khi tạo đối tượng cartProduct, chương trình sử dụng toán tử spread ... để tạo một bản sao của state, rồi thêm 
+        đối tượng 
+        cartProduct vào mảng cart của state. Kết quả cuối cùng là một state mới với đối tượng cartProduct đã được thêm vào 
+        giỏ hàng.
+    */
     } else {
       let cartProduct = {
         id: id + color,
