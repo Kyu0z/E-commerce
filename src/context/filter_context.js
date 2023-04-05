@@ -74,7 +74,8 @@ export const FilterContextProvider = ({ children }) => {
         sorting,
         updateFilterValue,
         clearFilters,
-      }}>
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );
